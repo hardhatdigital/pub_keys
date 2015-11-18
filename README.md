@@ -2,7 +2,7 @@
 
 This mix project uses an Elixir script to manage public keys from a git server. It can add and remove public keys from all targetted servers.
 
-Once installed on the git server, users will have to ssh into the git server in order to use the tool: ssh USERNAME@YOUR_MACHINE. Your public key needs to be on the git server to access the server.
+Once installed on the git server, users will have to ssh into the git server in order to use the tool: `ssh USERNAME@YOUR_MACHINE`. Your public key needs to be on the git server to access the server.
 
 ## Documentation
 

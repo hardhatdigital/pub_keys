@@ -1,0 +1,8 @@
+*.swp
+/config/dev.exs
+pub_keys*
+/_build
+/cover
+/deps
+erl_crash.dump
+*.ez

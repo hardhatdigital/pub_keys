@@ -1,0 +1,303 @@
+    <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PubKeys.Helper – pub_keys v0.0.1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.10.1-dev">
+    <link rel="stylesheet" href="" />
+    <script src="dist/sidebar_items.js"></script>
+  </head>
+  <body data-type="modules">
+
+    <div class="main">
+<button class="sidebar-toggle">
+  <i class="icon-menu"></i>
+</button>
+<section class="sidebar">
+  <button class="sidebar-toggle">
+    <i class="icon-menu"></i>
+  </button>
+
+  
+  <a href="api-reference.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+        pub_keys
+      </h1>
+      <h2 class="sidebar-projectVersion">
+        v0.0.1
+      </h2>
+    </div>
+    
+  </a>
+
+  <div class="sidebar-search">
+    <i class="icon-search"></i>
+    <input type="text" class="sidebar-searchInput" placeholder="search" autocomplete="off" />
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+    
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+    
+
+    
+
+    
+  </ul>
+
+  <ul id="full-list" class="sidebar-fullList"></ul>
+  <div class="sidebar-noResults"></div>
+</section>
+
+<section class="content">
+  <div id="content" class="content-inner">
+
+
+      <h1>
+        <small class="visible-xs">pub_keys v0.0.1</small>
+        PubKeys.Helper
+        
+        
+      </h1>
+
+      
+
+      
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <i class="icon-link"></i>
+            </a>
+            Summary
+          </h1>
+          
+
+          
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+    <div class="summary-row">
+  <div class="summary-signature">
+    <a href="#contains?/2">contains?(list, x)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Given a list and a string, checks if the list contains the specified string</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; PubKeys.Helper.contains?([], &quot;apple&quot;)
+false
+iex&gt; PubKeys.Helper.contains?([&quot;apple&quot;, &quot;banana&quot;, &quot;orange&quot;], &quot;apple&quot;)
+true</code></pre>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#empty?/1">empty?(x)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Checks if given argument is an empty string.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; PubKeys.Helper.empty?(&quot;&quot;)
+true
+iex&gt; PubKeys.Helper.empty?(&quot;apple&quot;)
+false</code></pre>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#files_path/1">files_path(arg1)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>returns path “example_auth_keys_files” if argument is :test.
+Otherwise returns a path to .ssh_keys directory in your home/username directory, for example: “/home/git/.ssh_keys”.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; PubKeys.Helper.files_path(:test)
+&quot;example_auth_keys_files/&quot;</code></pre>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#parse_key/1">parse_key(ssh_key)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Given an input of ssh_key string in format like <code class="inline">ssh-rsa My_unique_key john@test123</code>, returns the main unique key</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; PubKeys.Helper.parse_key(&quot;ssh-rsa My_unique_key john@test123&quot;)
+&quot;My_unique_key&quot;</code></pre>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#should_skip?/3">should_skip?(arg, key, action \\ :add)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Given a tuple containing ip address and a list of keys, a target ssh key, and action, returns false if the list of keys does not contain the target key and the action is :add or if the list of keys contains the target key and the action is :remove. Otherwise, returns true.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; path = PubKeys.Helper.files_path(:test)
+iex&gt; file_keys = PubKeys.read_keys(&quot;112.3.44.555&quot;, path)
+iex&gt; PubKeys.Helper.should_skip?(file_keys, &quot;ssh-rsa XXX123YZA john@test&quot;, :add)
+false
+iex&gt; PubKeys.Helper.should_skip?(file_keys, &quot;ssh-rsa ABCD123abcd john@test&quot;, :add)
+true
+iex&gt; PubKeys.Helper.should_skip?(file_keys, &quot;ssh-rsa ABCD123abcd john@test&quot;, :remove)
+false
+iex&gt; PubKeys.Helper.should_skip?(file_keys, &quot;ssh-rsa XXX123YZA john@test&quot;, :remove)
+true</code></pre>
+</div>
+  
+</div>
+
+  </div>
+
+
+          
+
+          
+
+        </section>
+      
+
+      
+
+      
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <i class="icon-link"></i>
+            </a>
+            Functions
+          </h1>
+          <div class="detail" id="contains?/2">
+  <div class="detail-header">
+    <a href="#contains?/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">contains?(list, x)</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Given a list and a string, checks if the list contains the specified string</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; PubKeys.Helper.contains?([], &quot;apple&quot;)
+false
+iex&gt; PubKeys.Helper.contains?([&quot;apple&quot;, &quot;banana&quot;, &quot;orange&quot;], &quot;apple&quot;)
+true</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="empty?/1">
+  <div class="detail-header">
+    <a href="#empty?/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">empty?(x)</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Checks if given argument is an empty string.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; PubKeys.Helper.empty?(&quot;&quot;)
+true
+iex&gt; PubKeys.Helper.empty?(&quot;apple&quot;)
+false</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="files_path/1">
+  <div class="detail-header">
+    <a href="#files_path/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">files_path(arg1)</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>returns path “example_auth_keys_files” if argument is :test.
+Otherwise returns a path to .ssh_keys directory in your home/username directory, for example: “/home/git/.ssh_keys”.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; PubKeys.Helper.files_path(:test)
+&quot;example_auth_keys_files/&quot;</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="parse_key/1">
+  <div class="detail-header">
+    <a href="#parse_key/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">parse_key(ssh_key)</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Given an input of ssh_key string in format like <code class="inline">ssh-rsa My_unique_key john@test123</code>, returns the main unique key</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; PubKeys.Helper.parse_key(&quot;ssh-rsa My_unique_key john@test123&quot;)
+&quot;My_unique_key&quot;</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="should_skip?/3">
+  <div class="detail-header">
+    <a href="#should_skip?/3" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">should_skip?(arg, key, action \\ :add)</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Given a tuple containing ip address and a list of keys, a target ssh key, and action, returns false if the list of keys does not contain the target key and the action is :add or if the list of keys contains the target key and the action is :remove. Otherwise, returns true.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; path = PubKeys.Helper.files_path(:test)
+iex&gt; file_keys = PubKeys.read_keys(&quot;112.3.44.555&quot;, path)
+iex&gt; PubKeys.Helper.should_skip?(file_keys, &quot;ssh-rsa XXX123YZA john@test&quot;, :add)
+false
+iex&gt; PubKeys.Helper.should_skip?(file_keys, &quot;ssh-rsa ABCD123abcd john@test&quot;, :add)
+true
+iex&gt; PubKeys.Helper.should_skip?(file_keys, &quot;ssh-rsa ABCD123abcd john@test&quot;, :remove)
+false
+iex&gt; PubKeys.Helper.should_skip?(file_keys, &quot;ssh-rsa XXX123YZA john@test&quot;, :remove)
+true</code></pre>
+
+  </section>
+</div>
+
+        </section>
+      
+
+      
+
+      
+        <footer class="footer">
+      <p>
+        <span class="line">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.10.1-dev),
+        </span>
+        <span class="line">
+          designed by
+          <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+      </p>
+    </footer>
+  </div>
+</section>
+</div>
+  <script src=""></script>
+  </body>
+</html>
+

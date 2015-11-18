@@ -6,7 +6,7 @@ Once installed on the git server, users will have to ssh into the git server in 
 
 ## Documentation
 
-[PubKeys Docs](http://hardhatdigital.github.io/pub_keys/PubKeys.Helper.html)
+[PubKeys Docs](http://hardhatdigital.github.io/pub_keys/PubKeys.html)
 
 ## How to set config file
 

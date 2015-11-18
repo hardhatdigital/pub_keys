@@ -2,7 +2,7 @@
 
 This mix project uses an Elixir script to manage public keys from a git server. It can add and remove public keys from all targetted servers.
 
-Once installed on the git server, users will have to ssh into the git server in order to use the tool: ssh git@yourgitserver.com. Your public key needs to be on the git server to access the server.
+Once installed on the git server, users will have to ssh into the git server in order to use the tool: ssh USERNAME@YOUR_MACHINE. Your public key needs to be on the git server to access the server.
 
 ## How to set config file
 
@@ -26,14 +26,14 @@ From anywhere on the git server:
 
 ## How it works
 
-- A master set of auth_keys files exist at: git@yourgitserver.com:/home/git/.ssh_keys
+- A master set of auth_keys files exist at: USERNAME@YOUR_MACHINE:/YOURPATH
 - Each file is named with the IP of a targetted server
 - Each file contains the public_keys that should exists on that server
 - The Elixir script allows you to add/remove keys to each file, and then it scp-s those files to the correct server
 - If want to add a key to one or more servers (rather than to *all* servers), add the key manually to the file, and push all auth_keys files out using the script.
 
 ## ToDo
-- Don't add/remove key from the /home/git/.ssh_keys files, if SCP fails
+- Don't add/remove key from the YOUR_TARGETTED_MACHINE/.ssh_keys files, if SCP fails
 
 ##Contributors
 [@dtcristo](https://github.com/dtcristo)

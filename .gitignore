@@ -1,6 +1,7 @@
 *.swp
 /config/dev.exs
 pub_keys
+!lib/pub_keys/
 /_build
 /cover
 /deps

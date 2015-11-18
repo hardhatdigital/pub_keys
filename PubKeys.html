@@ -145,8 +145,8 @@
     <div class="summary-synopsis"><p>Given an input of remote server’s IP address, and the directory path to ssh key files, returns a tuple containing the ip address and a list of the ssh_keys</p>
 <h2>Examples</h2>
 <pre><code class="iex elixir">iex&gt; path = PubKeys.Helper.files_path(:test)
-iex&gt; PubKeys.read_keys(&quot;112.3.44.555&quot;, path)
-{&quot;112.3.44.555&quot;, [&quot;ssh-rsa ABCD123abcd test1@work&quot;, &quot;ssh-rsa XYZ987abcd test2@work&quot;]}</code></pre>
+iex&gt; PubKeys.read_keys(&quot;192.168.0.10&quot;, path)
+{&quot;192.168.0.10&quot;, [&quot;ssh-rsa ABCD123abcd test1@work&quot;, &quot;ssh-rsa XYZ987abcd test2@work&quot;]}</code></pre>
 </div>
   
 </div>
@@ -279,8 +279,8 @@ iex&gt; PubKeys.read_keys(&quot;112.3.44.555&quot;, path)
     <p>Given an input of remote server’s IP address, and the directory path to ssh key files, returns a tuple containing the ip address and a list of the ssh_keys</p>
 <h2>Examples</h2>
 <pre><code class="iex elixir">iex&gt; path = PubKeys.Helper.files_path(:test)
-iex&gt; PubKeys.read_keys(&quot;112.3.44.555&quot;, path)
-{&quot;112.3.44.555&quot;, [&quot;ssh-rsa ABCD123abcd test1@work&quot;, &quot;ssh-rsa XYZ987abcd test2@work&quot;]}</code></pre>
+iex&gt; PubKeys.read_keys(&quot;192.168.0.10&quot;, path)
+{&quot;192.168.0.10&quot;, [&quot;ssh-rsa ABCD123abcd test1@work&quot;, &quot;ssh-rsa XYZ987abcd test2@work&quot;]}</code></pre>
 
   </section>
 </div>

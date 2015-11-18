@@ -1,0 +1,354 @@
+    <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PubKeys – pub_keys v0.0.1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.10.1-dev">
+    <link rel="stylesheet" href="" />
+    <script src="dist/sidebar_items.js"></script>
+  </head>
+  <body data-type="modules">
+
+    <div class="main">
+<button class="sidebar-toggle">
+  <i class="icon-menu"></i>
+</button>
+<section class="sidebar">
+  <button class="sidebar-toggle">
+    <i class="icon-menu"></i>
+  </button>
+
+  
+  <a href="api-reference.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+        pub_keys
+      </h1>
+      <h2 class="sidebar-projectVersion">
+        v0.0.1
+      </h2>
+    </div>
+    
+  </a>
+
+  <div class="sidebar-search">
+    <i class="icon-search"></i>
+    <input type="text" class="sidebar-searchInput" placeholder="search" autocomplete="off" />
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+    
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+    
+
+    
+
+    
+  </ul>
+
+  <ul id="full-list" class="sidebar-fullList"></ul>
+  <div class="sidebar-noResults"></div>
+</section>
+
+<section class="content">
+  <div id="content" class="content-inner">
+
+
+      <h1>
+        <small class="visible-xs">pub_keys v0.0.1</small>
+        PubKeys
+        
+        
+      </h1>
+
+      
+        <section id="moduledoc" class="docstring">
+          <p>This mix project uses an Elixir script to manage public keys from a git server. It can add and remove public keys from all targetted servers.</p>
+<ul>
+<li><code class="inline">pub_keys h</code> to get help
+</li>
+<li><code class="inline">pub_keys --add &quot;key here&quot;</code> to add key to all servers
+</li>
+<li><code class="inline">pub_keys --remove &quot;key here&quot;</code> to remove key from all servers
+</li>
+<li><code class="inline">pub_keys --deploy-all</code> to push out auth_keys files to all servers (if you want to add a key to files manually, for example)
+</li>
+</ul>
+
+        </section>
+      
+
+      
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <i class="icon-link"></i>
+            </a>
+            Summary
+          </h1>
+          
+
+          
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+    <div class="summary-row">
+  <div class="summary-signature">
+    <a href="#add_user_key/3">add_user_key(ssh_key, files_list, path)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Prepend a key into the authorized_keys file if the key doesn’t exist inside the file yet</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#deploy_all/2">deploy_all(files_list, path)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Given a list of ssh_keys files and the directory path of the files, this method will run <code class="inline">scp_to_server</code> to copy the ssh key file to each remote server as per the ip address in the file name, and overwrite the remote authorized keys file</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#main/1">main(options)</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#output/0">output()</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#prepend_key/3">prepend_key(arg, key, path)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Prepends a key inside the specified authorized_keys file</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#read_keys/2">read_keys(ip, path)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Given an input of remote server’s IP address, and the directory path to ssh key files, returns a tuple containing the ip address and a list of the ssh_keys</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; path = PubKeys.Helper.files_path(:test)
+iex&gt; PubKeys.read_keys(&quot;112.3.44.555&quot;, path)
+{&quot;112.3.44.555&quot;, [&quot;ssh-rsa ABCD123abcd test1@work&quot;, &quot;ssh-rsa XYZ987abcd test2@work&quot;]}</code></pre>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#remove_key/3">remove_key(arg, key, path)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Remove a key inside the specified authorized_keys file</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#remove_user_key/3">remove_user_key(ssh_key, files_list, path)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Remove a key in the authorized_keys file if it does not exist inside the file</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#scp_to_server/2">scp_to_server(file, path)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Given a file with IP Address as the name and the remote path where the authorized ssh keys are stored in the remote server. This method will run <code class="inline">scp</code> system command from the specified file to the path in the remote server where the IP Address file name indicates</p>
+</div>
+  
+</div>
+
+  </div>
+
+
+          
+
+          
+
+        </section>
+      
+
+      
+
+      
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <i class="icon-link"></i>
+            </a>
+            Functions
+          </h1>
+          <div class="detail" id="add_user_key/3">
+  <div class="detail-header">
+    <a href="#add_user_key/3" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">add_user_key(ssh_key, files_list, path)</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Prepend a key into the authorized_keys file if the key doesn’t exist inside the file yet</p>
+
+  </section>
+</div>
+<div class="detail" id="deploy_all/2">
+  <div class="detail-header">
+    <a href="#deploy_all/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">deploy_all(files_list, path)</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Given a list of ssh_keys files and the directory path of the files, this method will run <code class="inline">scp_to_server</code> to copy the ssh key file to each remote server as per the ip address in the file name, and overwrite the remote authorized keys file.</p>
+
+  </section>
+</div>
+<div class="detail" id="main/1">
+  <div class="detail-header">
+    <a href="#main/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">main(options)</span>
+      
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="output/0">
+  <div class="detail-header">
+    <a href="#output/0" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">output()</span>
+      
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="prepend_key/3">
+  <div class="detail-header">
+    <a href="#prepend_key/3" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">prepend_key(arg, key, path)</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Prepends a key inside the specified authorized_keys file</p>
+
+  </section>
+</div>
+<div class="detail" id="read_keys/2">
+  <div class="detail-header">
+    <a href="#read_keys/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">read_keys(ip, path)</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Given an input of remote server’s IP address, and the directory path to ssh key files, returns a tuple containing the ip address and a list of the ssh_keys</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; path = PubKeys.Helper.files_path(:test)
+iex&gt; PubKeys.read_keys(&quot;112.3.44.555&quot;, path)
+{&quot;112.3.44.555&quot;, [&quot;ssh-rsa ABCD123abcd test1@work&quot;, &quot;ssh-rsa XYZ987abcd test2@work&quot;]}</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="remove_key/3">
+  <div class="detail-header">
+    <a href="#remove_key/3" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">remove_key(arg, key, path)</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Remove a key inside the specified authorized_keys file</p>
+
+  </section>
+</div>
+<div class="detail" id="remove_user_key/3">
+  <div class="detail-header">
+    <a href="#remove_user_key/3" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">remove_user_key(ssh_key, files_list, path)</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Remove a key in the authorized_keys file if it does not exist inside the file</p>
+
+  </section>
+</div>
+<div class="detail" id="scp_to_server/2">
+  <div class="detail-header">
+    <a href="#scp_to_server/2" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">scp_to_server(file, path)</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Given a file with IP Address as the name and the remote path where the authorized ssh keys are stored in the remote server. This method will run <code class="inline">scp</code> system command from the specified file to the path in the remote server where the IP Address file name indicates.</p>
+
+  </section>
+</div>
+
+        </section>
+      
+
+      
+
+      
+        <footer class="footer">
+      <p>
+        <span class="line">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.10.1-dev),
+        </span>
+        <span class="line">
+          designed by
+          <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+      </p>
+    </footer>
+  </div>
+</section>
+</div>
+  <script src=""></script>
+  </body>
+</html>
+

@@ -50,7 +50,7 @@ defmodule PubKeys.Helper do
   Given a tuple containing ip address and a list of keys, a target ssh key, and action, returns false if the list of keys does not contain the target key and the action is :add or if the list of keys contains the target key and the action is :remove. Otherwise, returns true.
   ## Examples
       iex> path = PubKeys.Helper.files_path(:test)
-      iex> file_keys = PubKeys.read_keys("112.3.44.555", path)
+      iex> file_keys = PubKeys.read_keys("192.168.0.10", path)
       iex> PubKeys.Helper.should_skip?(file_keys, "ssh-rsa XXX123YZA john@test", :add)
       false
       iex> PubKeys.Helper.should_skip?(file_keys, "ssh-rsa ABCD123abcd john@test", :add)

@@ -41,8 +41,8 @@ defmodule PubKeys do
   Given an input of remote server's IP address, and the directory path to ssh key files, returns a tuple containing the ip address and a list of the ssh_keys
   ## Examples
       iex> path = PubKeys.Helper.files_path(:test)
-      iex> PubKeys.read_keys("112.3.44.555", path)
-      {"112.3.44.555", ["ssh-rsa ABCD123abcd test1@work", "ssh-rsa XYZ987abcd test2@work"]}
+      iex> PubKeys.read_keys("192.168.0.10", path)
+      {"192.168.0.10", ["ssh-rsa ABCD123abcd test1@work", "ssh-rsa XYZ987abcd test2@work"]}
   """
   def read_keys(ip, path) do
     {:ok, content} = File.read("#{path}/#{ip}")

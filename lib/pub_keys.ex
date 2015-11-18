@@ -17,19 +17,17 @@ defmodule PubKeys do
   @moduledoc """
   This mix project uses an Elixir script to manage public keys from a git server. It can add and remove public keys from all targetted servers.
 
-  - `pub_keys h` to get help
+  - `pub_keys --help` to get help
   - `pub_keys --add "key here"` to add key to all servers
   - `pub_keys --remove "key here"` to remove key from all servers
   - `pub_keys --deploy-all` to push out auth_keys files to all servers (if you want to add a key to files manually, for example)
   """
   def main(options) do
-   
     path = files_path(Mix.evn)
-
     files_list = System.cmd("ls", [path]) |> elem(0) |> String.split("\n")
     
     case options do
-      ["h"] -> IO.puts @instructions
+      ["--help"] -> IO.puts @instructions
       ["--deploy-all"] -> deploy_all(files_list, path)
       ["--add", ssh_key] -> add_user_key(ssh_key, files_list, path)
       ["--remove", ssh_key] -> remove_user_key(ssh_key, files_list, path)
@@ -41,8 +39,8 @@ defmodule PubKeys do
   Given an input of remote server's IP address, and the directory path to ssh key files, returns a tuple containing the ip address and a list of the ssh_keys
   ## Examples
       iex> path = PubKeys.Helper.files_path(:test)
-      iex> PubKeys.read_keys("112.3.44.555", path)
-      {"112.3.44.555", ["ssh-rsa ABCD123abcd test1@work", "ssh-rsa XYZ987abcd test2@work"]}
+      iex> PubKeys.read_keys("192.168.0.10", path)
+      {"192.168.0.10", ["ssh-rsa ABCD123abcd test1@work", "ssh-rsa XYZ987abcd test2@work"]}
   """
   def read_keys(ip, path) do
     {:ok, content} = File.read("#{path}/#{ip}")

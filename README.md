@@ -4,6 +4,10 @@ This mix project uses an Elixir script to manage public keys from a git server. 
 
 Once installed on the git server, users will have to ssh into the git server in order to use the tool: ssh USERNAME@YOUR_MACHINE. Your public key needs to be on the git server to access the server.
 
+## Documentation
+
+[PubKeys Docs](http://hardhatdigital.github.io/pub_keys/PubKeys.Helper.html)
+
 ## How to set config file
 
 - copy `dev_example.exs` to `dev.exs` inside the config directory
@@ -19,7 +23,7 @@ Once installed on the git server, users will have to ssh into the git server in 
 
 From anywhere on the git server:
 
-- `pub_keys h` to get help
+- `pub_keys --help` to get help
 - `pub_keys --add "key here"` to add key to all servers
 - `pub_keys --remove "key here"` to remove key from all servers
 - `pub_keys --deploy-all` to push out auth_keys files to all servers (if you want to add a key to files manually, for example)

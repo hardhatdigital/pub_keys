@@ -23,7 +23,7 @@ defmodule PubKeys do
   - `pub_keys --deploy-all` to push out auth_keys files to all servers (if you want to add a key to files manually, for example)
   """
   def main(options) do
-    path = files_path(Mix.evn)
+    path = files_path(Mix.env)
     files_list = System.cmd("ls", [path]) |> elem(0) |> String.split("\n")
     
     case options do
